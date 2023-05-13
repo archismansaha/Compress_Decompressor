@@ -7,12 +7,12 @@ import java.io.IOException;
 import java.util.zip.GZIPInputStream;
 
 public class DeCompressor {
-    public  static void method(File file) throws IOException{
+    public  static void method(File file,String fname) throws IOException{
         String fileDirectory=file.getParent();
-
+        String gzipFile=fileDirectory+"/new_"+fname.substring(0,fname.indexOf(".gz"));
         FileInputStream fis=new FileInputStream(file);
         GZIPInputStream gzip=new GZIPInputStream(fis);
-        FileOutputStream fos=new FileOutputStream(fileDirectory+"/DecompressFile");
+        FileOutputStream fos=new FileOutputStream(gzipFile);
         byte []buffer=new byte[1024];
         int len;
         while((len=gzip.read(buffer))!=-1){
@@ -23,7 +23,6 @@ public class DeCompressor {
         fis.close();
     }
     public static void main(String[] args) throws IOException{
-        File path=new File("/Users/Archisman/Desktop/CompreesedFile.gz");
-        method(path);
+
     }
 }

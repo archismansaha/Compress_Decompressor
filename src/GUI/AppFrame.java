@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class AppFrame extends JFrame implements ActionListener {
     JButton CompressorButton;
@@ -40,8 +41,10 @@ public class AppFrame extends JFrame implements ActionListener {
             int response=jfile.showSaveDialog(null);
             if(response==jfile.APPROVE_OPTION){
                 File file=new File(jfile.getSelectedFile().getAbsolutePath());
+                System.out.print(file);
                 try {
-                    Compressor.method(file);
+
+                    Compressor.method(file, file.getName());
                 } catch (Exception ex) {
                    JOptionPane.showMessageDialog(null,ex.toString());
                 }
@@ -54,7 +57,8 @@ public class AppFrame extends JFrame implements ActionListener {
             if(response==jfile.APPROVE_OPTION){
                 File file=new File(jfile.getSelectedFile().getAbsolutePath());
                 try {
-                    DeCompressor.method(file);
+
+                    DeCompressor.method(file, file.getName());
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null,ex.toString());
                 }

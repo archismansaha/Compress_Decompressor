@@ -7,10 +7,13 @@ import java.io.IOException;
 import java.util.zip.GZIPOutputStream;
 
 public class Compressor {
-    public static void method(File file) throws IOException {
+    public static void method(File file,String fname) throws IOException {
+
         String fileDirectory=file.getParent();
-        FileInputStream fis=new FileInputStream(file);
-        FileOutputStream fos=new FileOutputStream(fileDirectory+"/CompreesedFile.gz");
+        String gzipFile=fileDirectory+"/"+fname+".gz";
+        System.out.print(file);
+        FileInputStream fis=new FileInputStream(file.getAbsolutePath());
+        FileOutputStream fos=new FileOutputStream(gzipFile);
         GZIPOutputStream gzip=new GZIPOutputStream(fos);
         byte []buffer=new byte[1024];
         int len;
@@ -24,7 +27,6 @@ public class Compressor {
     }
 
     public static void main(String []args)throws IOException{
-        File path=new File("/Users/Archisman/Desktop/TestFile");
-        method(path);
+
     }
 }
